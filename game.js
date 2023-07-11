@@ -15,7 +15,9 @@ const game = {
   aiHand: "",
 };
 
-function aiChoice() {}
+function aiChoice() {
+  return hands[Math.floor(Math.random() * hands.length)].dataset.option;
+}
 
 function handSelection() {
   game.playerHand = this.dataset.option;
