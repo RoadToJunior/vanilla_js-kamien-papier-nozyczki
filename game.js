@@ -30,10 +30,19 @@ function startGame() {
     return alert("wybierz dłoń!");
   }
   game.aiHand = aiChoice();
-  numbers += 1;
-  if (playerHand === "kamień" && aiHand === "kamień") {
-    wins += 1;
+  if (game.playerHand === "kamień" && game.aiHand === "nożyczki") {
+    gameSummary.wins += 1;
+  } else if (game.playerHand === "nożyczki" && game.aiHand === "papier") {
+    gameSummary.wins += 1;
+  } else if (game.playerHand === "papier" && game.aiHand === "kamień") {
+    gameSummary.wins += 1;
+  } else if (game.playerHand === game.aiHand) {
+    gameSummary.draws += 1;
+  } else {
+    document.querySelector(".losses span").textContent =
+      gameSummary.losses += 1;
   }
+  gameSummary.numbers += 1;
 }
 
 startBtn.addEventListener("click", startGame);
