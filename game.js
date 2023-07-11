@@ -30,6 +30,10 @@ function startGame() {
     return alert("wybierz dłoń!");
   }
   game.aiHand = aiChoice();
+  numbers += 1;
+  if (playerHand === "kamień" && aiHand === "kamień") {
+    wins += 1;
+  }
 }
 
 startBtn.addEventListener("click", startGame);
