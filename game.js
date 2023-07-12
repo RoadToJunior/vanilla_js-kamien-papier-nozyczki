@@ -15,6 +15,25 @@ const game = {
   aiHand: "",
 };
 
+function checkResult(player, ai) {
+  if(player === ai) {
+    gameSummary.draws += 1
+  }
+  else if (
+    (game.playerHand === "kamień" && game.aiHand === "nożyczki") ||
+    (game.playerHand === "nożyczki" && game.aiHand === "papier") ||
+    (game.playerHand === "papier" && game.aiHand === "kamień")
+  ) {
+    gameSummary.wins += 1;
+  } else {
+    document.querySelector(".losses span").textContent =
+      gameSummary.losses += 1;
+  }
+  gameSummary.numbers += 1;
+}
+
+
+
 function aiChoice() {
   return hands[Math.floor(Math.random() * hands.length)].dataset.option;
 }
@@ -30,20 +49,8 @@ function startGame() {
     return alert("wybierz dłoń!");
   }
   game.aiHand = aiChoice();
-  if (game.playerHand === "kamień" && game.aiHand === "nożyczki") {
-    gameSummary.wins += 1;
-  } else if (game.playerHand === "nożyczki" && game.aiHand === "papier") {
-    gameSummary.wins += 1;
-  } else if (game.playerHand === "papier" && game.aiHand === "kamień") {
-    gameSummary.wins += 1;
-  } else if (game.playerHand === game.aiHand) {
-    gameSummary.draws += 1;
-  } else {
-    document.querySelector(".losses span").textContent =
-      gameSummary.losses += 1;
-  }
-  gameSummary.numbers += 1;
-}
+  const gameResult = checkResult(game.playerHand, game.aiHand);
+  
 
 startBtn.addEventListener("click", startGame);
 hands.forEach((hand) => hand.addEventListener("click", handSelection));
