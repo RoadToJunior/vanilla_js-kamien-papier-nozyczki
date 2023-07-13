@@ -15,6 +15,20 @@ const game = {
   aiHand: "",
 };
 
+function chooseWinner(player, ai) {
+  if (player === ai) {
+    return "draw";
+  } else if (
+    (player === "nożyczki" && ai === "papier") ||
+    (player === "kamień" && ai === "nożyczki") ||
+    (player === "papier" && ai === "kamień")
+  ) {
+    return "win";
+  } else {
+    return "lose";
+  }
+}
+
 function aiSelection() {
   return hands[Math.floor(Math.random() * hands.length)].dataset.option;
 }
@@ -25,11 +39,13 @@ function handleSelection() {
   this.style.boxShadow = "0 0 0 4px red";
 }
 
+//funckcja sterująca
 function startGame() {
   if (game.playerHand === "") {
     alert("Musisz wybrać dłoń!");
   }
   game.aiHand = aiSelection();
+  chooseWinner(game.playerHand, game.aiHand);
 }
 
 startBtn.addEventListener("click", startGame);
