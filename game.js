@@ -15,6 +15,12 @@ const game = {
   aiHand: "",
 };
 
+function handleSelection() {
+  game.playerHand = this.dataset.option;
+  hands.forEach((hand) => (hand.style.boxShadow = ""));
+  this.style.boxShadow = "0 0 0 4px red";
+}
+
 function startGame() {
   if (game.playerHand === "") {
     alert("Musisz wybrać dłoń!");
