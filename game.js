@@ -14,3 +14,12 @@ const game = {
   playerHand: "",
   aiHand: "",
 };
+
+function startGame() {
+  if (game.playerHand === "") {
+    alert("Musisz wybrać dłoń!");
+  }
+}
+
+startBtn.addEventListener("click", startGame);
+hands.forEach((hand) => hand.addEventListener("click", handleSelection));
