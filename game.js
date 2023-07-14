@@ -39,13 +39,37 @@ function handleSelection() {
   this.style.boxShadow = "0 0 0 4px red";
 }
 
+function gameResult(player, ai, result) {
+  document.querySelector('[data-summary="your-choice"]').textContent = player;
+  document.querySelector('[data-summary="ai-choice"]').textContent = ai;
+  gameSummary.numbers++;
+  if (result === "win") {
+    document.querySelector('[data-summary="who-win"]').textContent =
+      "Wygrałeś!";
+    gameSummary.wins++;
+  } else if (result === "lose") {
+    document.querySelector('[data-summary="who-win"]').textContent =
+      "Przegrałeś!";
+    gameSummary.losses++;
+  } else {
+    document.querySelector('[data-summary="who-win"]').textContent = "Remis!";
+    gameSummary.draws++;
+  }
+
+  document.querySelector(".numbers span").textContent = gameSummary.numbers;
+  document.querySelector(".wins span").textContent = gameSummary.wins;
+  document.querySelector(".losses span").textContent = gameSummary.losses;
+  document.querySelector(".draws span").textContent = gameSummary.draws;
+}
+
 //funckcja sterująca
 function startGame() {
   if (game.playerHand === "") {
     alert("Musisz wybrać dłoń!");
   }
   game.aiHand = aiSelection();
-  chooseWinner(game.playerHand, game.aiHand);
+  const result = chooseWinner(game.playerHand, game.aiHand);
+  gameResult(game.playerHand, game.aiHand, result);
 }
 
 startBtn.addEventListener("click", startGame);
