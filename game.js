@@ -44,14 +44,17 @@ function gameResult(player, ai, result) {
   document.querySelector('[data-summary="ai-choice"]').textContent = ai;
   gameSummary.numbers++;
   if (result === "win") {
+    document.querySelector('[data-summary="who-win"]').style.color = "green";
     document.querySelector('[data-summary="who-win"]').textContent =
       "Wygrałeś!";
     gameSummary.wins++;
   } else if (result === "lose") {
+    document.querySelector('[data-summary="who-win"]').style.color = "red";
     document.querySelector('[data-summary="who-win"]').textContent =
       "Przegrałeś!";
     gameSummary.losses++;
   } else {
+    document.querySelector('[data-summary="who-win"]').style.color = "gray";
     document.querySelector('[data-summary="who-win"]').textContent = "Remis!";
     gameSummary.draws++;
   }
