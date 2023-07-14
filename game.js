@@ -42,27 +42,22 @@ function handleSelection() {
 function gameResult(player, ai, result) {
   document.querySelector('[data-summary="your-choice"]').textContent = player;
   document.querySelector('[data-summary="ai-choice"]').textContent = ai;
-  gameSummary.numbers++;
+  document.querySelector(".numbers span").textContent = ++gameSummary.numbers;
   if (result === "win") {
     document.querySelector('[data-summary="who-win"]').style.color = "green";
     document.querySelector('[data-summary="who-win"]').textContent =
       "Wygrałeś!";
-    gameSummary.wins++;
+    document.querySelector(".wins span").textContent = ++gameSummary.wins;
   } else if (result === "lose") {
     document.querySelector('[data-summary="who-win"]').style.color = "red";
     document.querySelector('[data-summary="who-win"]').textContent =
       "Przegrałeś!";
-    gameSummary.losses++;
+    document.querySelector(".losses span").textContent = ++gameSummary.losses;
   } else {
     document.querySelector('[data-summary="who-win"]').style.color = "gray";
     document.querySelector('[data-summary="who-win"]').textContent = "Remis!";
-    gameSummary.draws++;
+    document.querySelector(".draws span").textContent = ++gameSummary.draws;
   }
-
-  document.querySelector(".numbers span").textContent = gameSummary.numbers;
-  document.querySelector(".wins span").textContent = gameSummary.wins;
-  document.querySelector(".losses span").textContent = gameSummary.losses;
-  document.querySelector(".draws span").textContent = gameSummary.draws;
 }
 
 //funckcja sterująca
